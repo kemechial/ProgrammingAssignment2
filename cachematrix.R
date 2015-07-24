@@ -22,6 +22,10 @@ makeCacheMatrix <- function(x = matrix()) {
     setinv <- function(inverse) inv <<- inverse
     #return the value of "inv" in the scope of the main function
     getinv <- function() inv
+    #return the list containing the functions
+    list(set = set, get = get,
+         setinv = setinv,
+         getinv = getinv)
 }
 
 
@@ -32,10 +36,10 @@ cacheSolve <- function(x, ...) {
         
         # get the value of the inv using getinv function from list x.
         inv <- x$getinv()
-        #check if "inv" is null, if not return inv, otherwise calculate
+        #check if "inv" is null, if not return inv, otherwise calculate inverse
         if(!is.null(inv)){
           message("getting cached data")
-          #return inv and exit the dunction
+          #return inv and exit the function
           return(inv)
         }
         #get matrix data
